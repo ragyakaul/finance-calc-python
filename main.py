@@ -33,7 +33,12 @@ def monthlyPrincipalSaved(monthlyRepayment: float, monthlyInterest: float):
 
 def savingsTowardsStocks(savings: float, monthlyPrincipal: float):
     savingsPlusPrincipal = savings + monthlyPrincipal
-    return savingsPlusPrincipal/2
+    toStocks = savingsPlusPrincipal/2
+
+    if toStocks > savings:
+        return savings
+    else:
+        return toStocks
 
 """
 savings towards mortgage = total savings - savings towards stocks = 700 (or same as principal ??)
@@ -42,17 +47,3 @@ savings towards mortgage = total savings - savings towards stocks = 700 (or same
 def savingsTowardsMortgage(savings: float, savingsTowardsStocks: float):
     return savings - savingsTowardsStocks
 
-
-
-monthlyInterest = monthlyInterestCharged(values.mortgageLeft, values.interestRate)
-print(f"Monthly Interest: {monthlyInterest}")
-
-monthlyPrincipal = monthlyPrincipalSaved(values.monthlyRepayment, monthlyInterest)
-print(f"Monthly Principal: {monthlyPrincipal}")
-
-monthlyStocksSavings = savingsTowardsStocks(values.savings, monthlyPrincipal)
-print(f"This is how much you need to put into stocks this month: {monthlyStocksSavings}")
-
-
-monthlyExtraMortgageContribution = savingsTowardsMortgage(values.savings, monthlyStocksSavings)
-print(f"This is how much extra you need to put into the mortgage this month:{monthlyExtraMortgageContribution}")
